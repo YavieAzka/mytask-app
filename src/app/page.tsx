@@ -241,47 +241,55 @@ export default function TaskManager() {
             const form = document.querySelector("form") as HTMLFormElement;
             if (form) form.reset();
           }}
-          className="flex flex-col md:flex-row gap-4 items-end bg-zinc-950 p-4 rounded-xl border border-zinc-800"
+          // Ubah form menjadi flex-col agar isinya (input row & tombol) bertumpuk atas-bawah
+          className="flex flex-col gap-4 bg-zinc-950 p-4 rounded-xl border border-zinc-800"
         >
-          <div className="flex-1 w-full flex flex-col gap-1">
-            <label className="text-xs text-zinc-500 uppercase tracking-wider">
-              Nama Tugas
-            </label>
-            <input
-              type="text"
-              name="title"
-              required
-              placeholder="Apa yang harus dikerjakan?"
-              className="p-2 bg-zinc-900 border border-zinc-800 rounded focus:outline-none focus:border-zinc-600"
-            />
+          {/* Kontainer Input - Sebaris di desktop, bertumpuk di mobile */}
+          <div className="flex flex-col md:flex-row gap-3 items-stretch w-full">
+            <div className="flex-1 w-full flex flex-col gap-1">
+              <label className="text-xs text-zinc-500 uppercase tracking-wider">
+                Nama Tugas
+              </label>
+              <input
+                type="text"
+                name="title"
+                required
+                placeholder="Apa yang harus dikerjakan?"
+                className="p-2 bg-zinc-900 border border-zinc-800 rounded focus:outline-none focus:border-zinc-600 h-[42px]"
+              />
+            </div>
+
+            <div className="flex-1 w-full flex flex-col gap-1">
+              <label className="text-xs text-zinc-500 uppercase tracking-wider">
+                Detail / Link
+              </label>
+              <input
+                type="text"
+                name="detail"
+                placeholder="Link spek atau catatan tambahan"
+                className="p-2 bg-zinc-900 border border-zinc-800 rounded focus:outline-none focus:border-zinc-600 h-[42px]"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1 md:w-auto w-full">
+              <label className="text-xs text-zinc-500 uppercase tracking-wider">
+                Deadline
+              </label>
+              <input
+                type="date"
+                name="deadline"
+                required
+                className="p-2 bg-zinc-900 border border-zinc-800 rounded focus:outline-none focus:border-zinc-600 [color-scheme:dark] h-[42px]"
+              />
+            </div>
           </div>
-          <div className="flex-1 w-full flex flex-col gap-1">
-            <label className="text-xs text-zinc-500 uppercase tracking-wider">
-              Detail / Link
-            </label>
-            <input
-              type="text"
-              name="detail"
-              placeholder="Link spek atau catatan tambahan"
-              className="p-2 bg-zinc-900 border border-zinc-800 rounded focus:outline-none focus:border-zinc-600"
-            />
-          </div>
-          <div className="w-full md:w-auto flex flex-col gap-1">
-            <label className="text-xs text-zinc-500 uppercase tracking-wider">
-              Deadline
-            </label>
-            <input
-              type="date"
-              name="deadline"
-              required
-              className="p-2 bg-zinc-900 border border-zinc-800 rounded focus:outline-none focus:border-zinc-600 [color-scheme:dark]"
-            />
-          </div>
+
+          {/* Tombol Tambah diletakkan di bawah */}
           <button
             type="submit"
-            className="w-full md:w-auto bg-zinc-100 text-black px-6 py-2 rounded font-bold hover:bg-white transition-colors"
+            className="w-full bg-zinc-100 text-black px-6 py-2.5 rounded font-bold hover:bg-white transition-colors"
           >
-            Tambah
+            Tambah Tugas
           </button>
         </form>
 
