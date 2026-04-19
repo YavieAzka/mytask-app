@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  detail      String?
+  deadline    DateTime
+  isCompleted Boolean  @default(false)
+  userToken   String
+  createdAt   DateTime @default(now())
+}
+
+model UserSettings {
+  userToken String @id
+  title     String @default("Tugas Saya")
+}
